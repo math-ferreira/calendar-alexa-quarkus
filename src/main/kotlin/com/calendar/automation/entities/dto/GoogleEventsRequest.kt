@@ -21,8 +21,6 @@ data class GoogleEventsQueries(
 )
 
 data class GoogleEventsBody(
-    @JsonProperty("calendar_id")
-    val calendarId: String,
     @JsonProperty("send_updates")
     val sendUpdates: Boolean,
     @JsonProperty("attendees")

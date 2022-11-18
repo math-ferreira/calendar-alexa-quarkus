@@ -9,10 +9,6 @@ import javax.ws.rs.core.Application
 
 
 @OpenAPIDefinition(
-    tags = [
-        Tag(name="google-calendar", description="Provide integration to calendar data"),
-        Tag(name="google-events", description="Provide integration to events inside the calendars"),
-    ],
     info = Info(
         title="Calendar Alexa Microservice",
         version = "1.0.0",
