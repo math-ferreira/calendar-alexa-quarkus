@@ -16,11 +16,12 @@ import javax.ws.rs.QueryParam
 interface GoogleCalendarController {
 
     @GET
+    @RolesAllowed("admin")
     @Path("/calendars")
-    @RolesAllowed("Tester")
     fun getCalendars(): List<GoogleCalendarListResponse>
 
     @GET
+    @RolesAllowed("admin")
     @Path("/calendar")
     fun getCalendarById(
         @QueryParam(value = "calendarId") calendarId: String

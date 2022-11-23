@@ -1,0 +1,25 @@
+quarkus:
+  datasource:
+    password: local
+    username: local_user
+    jdbc:
+      driver: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/calendar_alexa
+    db-kind: postgresql
+  http:
+    auth:
+      basic: true
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+  live-reload:
+    instrumentation: true
+
+google:
+  client:
+    credentials:
+      client-id: 286511007859-3c83f4hq9d6ok9ttu387197peepb642o.apps.googleusercontent.com
+      token-uri: https://oauth2.googleapis.com/token
+      redirect-uri: http://localhost
+      auth-uri: https://accounts.google.com/o/oauth2/auth
+      client-secret: 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

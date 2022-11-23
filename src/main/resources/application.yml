@@ -1,0 +1,9 @@
+quarkus:
+  http:
+    auth:
+      basic: true
+  hibernate-orm:
+    database:
+      generation: update
+  live-reload:
+    instrumentation: true

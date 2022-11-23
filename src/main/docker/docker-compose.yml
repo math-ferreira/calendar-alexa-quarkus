@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  calendaralexa-postgresql-db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=local_user
+      - POSTGRES_PASSWORD=local
+      - POSTGRES_DB=calendar_alexa
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
+    ports:
+      - "9000:9000"
