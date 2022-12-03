@@ -59,11 +59,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 tasks.register("stage") {
-    subprojects.forEach { project ->
-        val clean = project.tasks.first { it.name.contains("clean") }
-        val build = project.tasks.first { it.name.contains("build") }
-        build.dependsOn(clean)
-        build.mustRunAfter(clean)
-        dependsOn(build)
-    }
+    val clean = project.tasks.first { it.name.contains("clean") }
+    val build = project.tasks.first { it.name.contains("build") }
+    build.dependsOn(clean)
+    build.mustRunAfter(clean)
+    dependsOn(build)
 }
