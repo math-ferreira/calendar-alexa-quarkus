@@ -57,3 +57,13 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
     kotlinOptions.javaParameters = true
 }
+
+tasks.register("stage") {
+    subprojects.forEach { project ->
+        val clean = project.tasks.first { it.name.contains("clean") }
+        val build = project.tasks.first { it.name.contains("build") }
+        build.dependsOn(clean)
+        build.mustRunAfter(clean)
+        dependsOn(build)
+    }
+}
