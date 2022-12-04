@@ -1,4 +1,6 @@
 quarkus:
+  swagger-ui:
+    always-include: true
   http:
     port: ${PORT:5000}
     auth:
