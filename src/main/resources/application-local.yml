@@ -1,17 +1,7 @@
 quarkus:
-  datasource:
-    password: local
-    username: local_user
-    jdbc:
-      driver: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:5432/calendar_alexa
-    db-kind: postgresql
   http:
     auth:
       basic: true
-  hibernate-orm:
-    database:
-      generation: drop-and-create
   live-reload:
     instrumentation: true
 
