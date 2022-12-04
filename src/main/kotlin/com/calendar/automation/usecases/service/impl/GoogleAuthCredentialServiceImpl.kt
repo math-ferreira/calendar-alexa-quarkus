@@ -49,9 +49,9 @@ class GoogleAuthCredentialServiceImpl(
                     FileDataStoreFactory(File(GoogleServiceConstants.TOKENS_DIRECTORY_PATH))
                 ).setAccessType("offline").build()
 
-        val receiver = LocalServerReceiver.Builder().setPort(8888).build()
+        val receiver = LocalServerReceiver.Builder().setHost("calendar-alexa.herokuapp.com").build()
 
-        return AuthorizationCodeInstalledApp(flow, receiver).authorize("user")
+        return AuthorizationCodeInstalledApp(flow, receiver).authorize(null)
     }
 
     private fun getHttpTransport(): NetHttpTransport = GoogleNetHttpTransport.newTrustedTransport()

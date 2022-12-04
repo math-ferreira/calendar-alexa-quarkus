@@ -13,6 +13,6 @@ google:
     credentials:
       client-id: 286511007859-nl7abu9o7788uojq4f360puk7iou9sht.apps.googleusercontent.com
       token-uri: https://oauth2.googleapis.com/token
-      redirect-uri: https://calendar-alexa.herokuapp.com
+      redirect-uri: http://calendar-alexa.herokuapp.com
       auth-uri: https://accounts.google.com/o/oauth2/auth
       client-secret: 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
