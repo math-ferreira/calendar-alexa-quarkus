@@ -1,6 +1,6 @@
 quarkus:
   http:
-    port: 8080
+    port: ${PORT:5000}
     auth:
       basic: true
   live-reload:
