@@ -21,6 +21,11 @@ class ControllerAdvice : ExceptionMapper<Exception> {
     }
 
     private fun handleException(ex: Exception): Response {
+        println(ex)
+        println(ex.message)
+        println(ex.localizedMessage)
+        println(ex.stackTrace)
+        println(ex.cause)
         return createErrorResponse(ex, ErrorTypeEnum.SERVER_ERROR)
             .run {
                 Response.status(INTERNAL_SERVER_ERROR)
