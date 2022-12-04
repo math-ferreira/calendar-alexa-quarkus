@@ -11,8 +11,8 @@ quarkus:
 google:
   client:
     credentials:
-      client-id: 286511007859-a59gok2d64cl9metf82hg4392neugb0s.apps.googleusercontent.com
+      client-id: 286511007859-nl7abu9o7788uojq4f360puk7iou9sht.apps.googleusercontent.com
       token-uri: https://oauth2.googleapis.com/token
       redirect-uri: https://calendar-alexa.herokuapp.com
       auth-uri: https://accounts.google.com/o/oauth2/auth
-      client-secret: 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
+      client-secret: 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
