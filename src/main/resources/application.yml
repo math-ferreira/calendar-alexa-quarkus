@@ -1,9 +1,23 @@
 quarkus:
+  swagger-ui:
+    always-include: true
+
+  datasource:
+    password: 9fde472f28dc7ddb5db4f364724f94e8fe153584454ca68c615290e7ce389a70
+    username: nukqfulxyofkuq
+    jdbc:
+      driver: org.postgresql.Driver
+      url: jdbc:postgresql://ec2-3-217-14-181.compute-1.amazonaws.com:5432/dedmh5h2c4bvsl
+    db-kind: postgresql
+
   http:
+    port: ${PORT:5000}
     auth:
       basic: true
+
   hibernate-orm:
     database:
       generation: update
+
   live-reload:
     instrumentation: true
