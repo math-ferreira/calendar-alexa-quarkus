@@ -25,7 +25,8 @@ class GoogleAuthCredentialServiceImpl(
     @ConfigProperty(name = "google.client.credentials.client-secret") private val clientSecret: String,
     @ConfigProperty(name = "google.client.credentials.auth-uri") private val authUri: String,
     @ConfigProperty(name = "google.client.credentials.redirect-uri") private val redirectUri: List<String>,
-    @ConfigProperty(name = "google.client.credentials.token-uri") private val tokenUri: String
+    @ConfigProperty(name = "google.client.credentials.token-uri") private val tokenUri: String,
+    @ConfigProperty(name = "quarkus.http.port") private val port: Int
 ) : GoogleAuthCredentialService {
 
     override fun buildGoogleRequest(): Calendar {
@@ -49,7 +50,7 @@ class GoogleAuthCredentialServiceImpl(
                     FileDataStoreFactory(File(GoogleServiceConstants.TOKENS_DIRECTORY_PATH))
                 ).setAccessType("offline").build()
 
-        val receiver = LocalServerReceiver.Builder().setHost("calendar-alexa.herokuapp.com").build()
+        val receiver = LocalServerReceiver.Builder().setHost("calendar-alexa.herokuapp.com").setPort(port).build()
 
         return AuthorizationCodeInstalledApp(flow, receiver).authorize(null)
     }
