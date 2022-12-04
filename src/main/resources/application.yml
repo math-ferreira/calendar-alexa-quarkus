@@ -1,5 +1,6 @@
 quarkus:
   http:
+    port: 8080
     auth:
       basic: true
   live-reload:
