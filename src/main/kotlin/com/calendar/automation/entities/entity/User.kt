@@ -9,6 +9,7 @@ import io.quarkus.security.jpa.Username
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.ManyToMany
 import javax.persistence.Table
 import javax.transaction.Transactional
 
@@ -24,8 +25,9 @@ class User : PanacheEntity() {
     @Password
     lateinit var password: String
 
+    @ManyToMany
     @Roles
-    lateinit var role: String
+    lateinit var roles: List<Role>
 
     @Column(name = "created_at")
     lateinit var createdAt: LocalDateTime
@@ -33,11 +35,11 @@ class User : PanacheEntity() {
     companion object {
 
         @Transactional
-        fun add(username: String, password: String, role: String) =
+        fun add(username: String, password: String, role: List<Role>) =
             User().apply {
                 this.username = username
                 this.password = BcryptUtil.bcryptHash(password)
-                this.role = role
+                this.roles = role
                 this.createdAt = LocalDateTime.now()
             }.run {
                 this.persist()

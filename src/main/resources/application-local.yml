@@ -1,4 +1,5 @@
 quarkus:
+
   datasource:
     password: local
     username: local_user
@@ -6,21 +7,31 @@ quarkus:
       driver: org.postgresql.Driver
       url: jdbc:postgresql://localhost:5432/calendar_alexa
     db-kind: postgresql
+
   http:
-    port: ${PORT:5000}
+    port: ${PORT:8080}
     auth:
       basic: true
+
   hibernate-orm:
     database:
       generation: drop-and-create
+
   live-reload:
     instrumentation: true
 
+  rest-client:
+    oauth2-google:
+      url: https://oauth2.googleapis.com
+
+  cache:
+    caffeine:
+      "oauth-token-cache":
+        expire-after-write: 3599S
+
 google:
   client:
+    refresh-token: 1//04gox6g8772sOCgYIARAAGAQSNwF-L9IrST_0WXLrhIQlF044S9H7gxSJIw8LidB3rZJ4BQAo7RF4NAWpIfowEkirK2IurS87ZKE
     credentials:
-      client-id: 286511007859-3c83f4hq9d6ok9ttu387197peepb642o.apps.googleusercontent.com
-      token-uri: https://oauth2.googleapis.com/token
-      redirect-uri: http://localhost
-      auth-uri: https://accounts.google.com/o/oauth2/auth
-      client-secret: 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
+      client-id: 286511007859-uiuhvfbnq2rfg37pir039datb17aqnbh.apps.googleusercontent.com
+      client-secret: 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

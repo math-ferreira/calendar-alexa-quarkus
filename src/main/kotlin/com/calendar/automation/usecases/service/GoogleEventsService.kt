@@ -1,7 +1,7 @@
 package com.calendar.automation.usecases.service
 
-import com.calendar.automation.entities.dto.GoogleEventsRequest
-import com.calendar.automation.entities.dto.GoogleEventsResponse
+import com.calendar.automation.entities.dto.old.GoogleEventsRequest
+import com.calendar.automation.entities.dto.old.GoogleEventsResponse
 
 interface GoogleEventsService {
 

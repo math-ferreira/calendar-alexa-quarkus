@@ -1,7 +1,7 @@
 package com.calendar.automation.web.controllers.impl
 
-import com.calendar.automation.entities.dto.GoogleCalendarListResponse
-import com.calendar.automation.entities.dto.GoogleCalendarResponse
+import com.calendar.automation.entities.dto.old.GoogleCalendarListResponse
+import com.calendar.automation.entities.dto.old.GoogleCalendarResponse
 import com.calendar.automation.usecases.service.GoogleCalendarService
 import com.calendar.automation.web.controllers.GoogleCalendarController
 
@@ -13,7 +13,7 @@ class GoogleCalendarControllerImpl(
         return googleCalendarService.getCalendarList()
     }
 
-    override fun getCalendarById(calendarId: String): GoogleCalendarResponse{
+    override fun getCalendarById(calendarId: String): GoogleCalendarResponse {
         return googleCalendarService.getCalendarById(calendarId)
     }
 }

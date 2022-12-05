@@ -1,7 +1,7 @@
 package com.calendar.automation.usecases.service
 
-import com.calendar.automation.entities.dto.GoogleCalendarListResponse
-import com.calendar.automation.entities.dto.GoogleCalendarResponse
+import com.calendar.automation.entities.dto.old.GoogleCalendarListResponse
+import com.calendar.automation.entities.dto.old.GoogleCalendarResponse
 
 interface GoogleCalendarService {
 

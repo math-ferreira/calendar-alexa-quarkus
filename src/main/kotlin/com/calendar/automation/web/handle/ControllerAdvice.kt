@@ -1,7 +1,7 @@
 package com.calendar.automation.web.handle
 
-import com.calendar.automation.entities.dto.ErrorData
-import com.calendar.automation.entities.dto.ErrorResponse
+import com.calendar.automation.entities.dto.old.ErrorData
+import com.calendar.automation.entities.dto.old.ErrorResponse
 import com.calendar.automation.entities.enums.ErrorTypeEnum
 import com.calendar.automation.entities.exception.CustomException
 import javax.ws.rs.core.Response

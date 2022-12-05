@@ -1,7 +1,7 @@
 package com.calendar.automation.usecases.service.impl
 
-import com.calendar.automation.entities.dto.*
-import com.calendar.automation.usecases.service.GoogleAuthCredentialService
+import com.calendar.automation.entities.dto.old.*
+import com.calendar.automation.usecases.service.GoogleOauthService
 import com.calendar.automation.usecases.service.GoogleEventsService
 import com.google.api.client.util.DateTime
 import com.google.api.services.calendar.model.Event
@@ -11,7 +11,7 @@ import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class GoogleEventsServiceImpl(
-    private val googleAuthCredentialService: GoogleAuthCredentialService
+    private val googleAuthCredentialService: GoogleOauthService
 ) : GoogleEventsService {
 
     override fun insertEvent(googleEventsRequest: GoogleEventsRequest): GoogleEventsResponse {
@@ -20,7 +20,7 @@ class GoogleEventsServiceImpl(
     }
 
     private fun requestInsertEvent(googleEventsRequest: GoogleEventsRequest): Event {
-        return buildEvent(googleEventsRequest.googleEventsBody)
+/*        return buildEvent(googleEventsRequest.googleEventsBody)
             .apply {
                 start = setEventDateTime(googleEventsRequest.googleEventsBody.startDate)
                 end = setEventDateTime(googleEventsRequest.googleEventsBody.endDate)
@@ -31,7 +31,8 @@ class GoogleEventsServiceImpl(
                     .events()
                     .insert(googleEventsRequest.googleEventsQueries.calendarId, this)
                     .execute()
-            }
+            }*/
+        TODO()
     }
 
     private fun buildEvent(googleEventsBody: GoogleEventsBody) =

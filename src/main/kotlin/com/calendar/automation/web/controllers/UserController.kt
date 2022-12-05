@@ -1,6 +1,6 @@
 package com.calendar.automation.web.controllers
 
-import com.calendar.automation.entities.dto.UserResponse
+import com.calendar.automation.entities.dto.old.UserResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import javax.annotation.security.RolesAllowed
 import javax.ws.rs.GET
@@ -16,7 +16,7 @@ import javax.ws.rs.core.SecurityContext
 interface UserController {
 
     @GET
-    @RolesAllowed("user")
+    @RolesAllowed("public-role")
     @Path("/me")
     fun me(
         @Context securityContext: SecurityContext

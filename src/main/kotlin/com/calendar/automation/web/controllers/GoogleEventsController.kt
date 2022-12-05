@@ -1,7 +1,7 @@
 package com.calendar.automation.web.controllers
 
-import com.calendar.automation.entities.dto.GoogleEventsBody
-import com.calendar.automation.entities.dto.GoogleEventsResponse
+import com.calendar.automation.entities.dto.old.GoogleEventsBody
+import com.calendar.automation.entities.dto.old.GoogleEventsResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import javax.annotation.security.RolesAllowed
 import javax.ws.rs.Consumes
