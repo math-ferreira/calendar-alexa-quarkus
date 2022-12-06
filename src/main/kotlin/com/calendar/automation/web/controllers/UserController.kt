@@ -1,5 +1,6 @@
 package com.calendar.automation.web.controllers
 
+import com.calendar.automation.entities.constants.PermissionsConstants.PUBLIC_ROLE_NAME
 import com.calendar.automation.entities.dto.old.UserResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import javax.annotation.security.RolesAllowed
@@ -16,7 +17,7 @@ import javax.ws.rs.core.SecurityContext
 interface UserController {
 
     @GET
-    @RolesAllowed("public-role")
+    @RolesAllowed(PUBLIC_ROLE_NAME)
     @Path("/me")
     fun me(
         @Context securityContext: SecurityContext

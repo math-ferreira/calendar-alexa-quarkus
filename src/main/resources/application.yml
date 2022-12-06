@@ -2,22 +2,10 @@ quarkus:
   swagger-ui:
     always-include: true
 
-  datasource:
-    password: 9fde472f28dc7ddb5db4f364724f94e8fe153584454ca68c615290e7ce389a70
-    username: nukqfulxyofkuq
-    jdbc:
-      driver: org.postgresql.Driver
-      url: jdbc:postgresql://ec2-3-217-14-181.compute-1.amazonaws.com:5432/dedmh5h2c4bvsl
-    db-kind: postgresql
-
   http:
     port: ${PORT:8080}
     auth:
       basic: true
-
-  hibernate-orm:
-    database:
-      generation: drop-and-create
 
   live-reload:
     instrumentation: true
@@ -31,9 +19,11 @@ quarkus:
       "oauth-token-cache":
         expire-after-write: 3599S
 
-google:
-  client:
-    refresh-token: 1//04gox6g8772sOCgYIARAAGAQSNwF-L9IrST_0WXLrhIQlF044S9H7gxSJIw8LidB3rZJ4BQAo7RF4NAWpIfowEkirK2IurS87ZKE
-    credentials:
-      client-id: 286511007859-uiuhvfbnq2rfg37pir039datb17aqnbh.apps.googleusercontent.com
-      client-secret: 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
+  hibernate-orm:
+    database:
+      generation: none
+
+  flyway:
+    baseline-on-migrate: true
+    migrate-at-start: false
+    locations: filesystem:src/main/resources/db/migration

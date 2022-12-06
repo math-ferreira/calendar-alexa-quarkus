@@ -2,6 +2,7 @@ package com.calendar.automation.web.controllers.impl
 
 import com.calendar.automation.entities.dto.Oauth2TokenResponse
 import com.calendar.automation.entities.enums.PermissionEnum
+import com.calendar.automation.entities.enums.PermissionEnum.GOOGLE_OAUTH
 import com.calendar.automation.entities.exception.CustomException
 import com.calendar.automation.usecases.service.AuthorizationService
 import com.calendar.automation.usecases.service.GoogleOauthService
@@ -15,7 +16,10 @@ class GoogleOauthControllerImpl(
 ) : GoogleOauthController {
 
     override fun getToken(securityContext: SecurityContext): Oauth2TokenResponse {
-        authorizationService.validateRequest(securityContext, listOf(PermissionEnum.ROLE_ADMIN))
+        authorizationService.validateRequest(
+            securityContext = securityContext,
+            allowedRoles = listOf(GOOGLE_OAUTH)
+        )
         return googleOauthService.getToken()
     }
 
