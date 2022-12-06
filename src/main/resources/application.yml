@@ -3,7 +3,7 @@ quarkus:
     always-include: true
 
   http:
-    port: ${PORT:8080}
+    port: ${PORT}
     auth:
       basic: true
 
