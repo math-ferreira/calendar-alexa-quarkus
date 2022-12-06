@@ -2,8 +2,6 @@ quarkus:
   swagger-ui:
     always-include: true
 
-  http:
-    port: ${PORT}
     auth:
       basic: true
 
