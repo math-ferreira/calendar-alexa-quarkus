@@ -1,8 +1,7 @@
 package com.calendar.automation.web.controllers
 
 import com.calendar.automation.entities.constants.PermissionsConstants.GOOGLE_OAUTH_ROLE_NAME
-import com.calendar.automation.entities.dto.Oauth2TokenResponse
-import com.calendar.automation.entities.enums.PermissionEnum
+import com.calendar.automation.entities.dto.client.outh2google.Oauth2TokenClientResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import javax.annotation.security.RolesAllowed
 import javax.ws.rs.GET
@@ -22,6 +21,6 @@ interface GoogleOauthController {
     @Path("/token")
     fun getToken(
         @Context securityContext: SecurityContext
-    ): Oauth2TokenResponse
+    ): Oauth2TokenClientResponse
 
 }

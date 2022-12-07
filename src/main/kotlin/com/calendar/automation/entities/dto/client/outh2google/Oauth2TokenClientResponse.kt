@@ -1,8 +1,8 @@
-package com.calendar.automation.entities.dto
+package com.calendar.automation.entities.dto.client.outh2google
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Oauth2TokenResponse(
+data class Oauth2TokenClientResponse(
     @JsonProperty("access_token")
     val accessToken: String,
     @JsonProperty("expires_in")
