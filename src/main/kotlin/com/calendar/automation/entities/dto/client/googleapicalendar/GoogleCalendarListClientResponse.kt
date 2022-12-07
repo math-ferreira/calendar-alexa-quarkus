@@ -2,13 +2,12 @@ package com.calendar.automation.entities.dto.client.googleapicalendar
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class CalendarListClientResponse(
+data class GoogleCalendarListClientResponse(
     @JsonProperty("items")
-    val items: List<Item>
+    val items: List<ItemClientResponse>
 )
 
-
-data class Item(
+data class ItemClientResponse(
     @JsonProperty("kind")
     val kind: String,
     @JsonProperty("primary")

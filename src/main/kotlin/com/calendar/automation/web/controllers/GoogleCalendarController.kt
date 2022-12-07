@@ -1,9 +1,8 @@
 package com.calendar.automation.web.controllers
 
 import com.calendar.automation.entities.constants.PermissionsConstants.GOOGLE_CALENDAR_ROLE_NAME
-import com.calendar.automation.entities.dto.GoogleCalendarListResponse
-import com.calendar.automation.entities.dto.client.googleapicalendar.CalendarListClientResponse
-import com.calendar.automation.entities.dto.old.GoogleCalendarResponse
+import com.calendar.automation.entities.dto.CalendarListResponse
+import com.calendar.automation.entities.dto.CalendarResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import javax.annotation.security.RolesAllowed
 import javax.ws.rs.GET
@@ -24,7 +23,7 @@ interface GoogleCalendarController {
     @Path("/calendars")
     fun getCalendars(
         @Context securityContext: SecurityContext
-    ): List<GoogleCalendarListResponse>
+    ): List<CalendarListResponse>
 
     @GET
     @RolesAllowed(GOOGLE_CALENDAR_ROLE_NAME)
@@ -32,6 +31,6 @@ interface GoogleCalendarController {
     fun getCalendarById(
         @Context securityContext: SecurityContext,
         @QueryParam(value = "calendarId") calendarId: String
-    ): GoogleCalendarResponse
+    ): CalendarResponse
 
 }
