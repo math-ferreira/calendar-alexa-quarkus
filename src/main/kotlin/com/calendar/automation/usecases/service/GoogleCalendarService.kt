@@ -1,11 +1,11 @@
 package com.calendar.automation.usecases.service
 
-import com.calendar.automation.entities.dto.GoogleCalendarListResponse
-import com.calendar.automation.entities.dto.old.GoogleCalendarResponse
+import com.calendar.automation.entities.dto.CalendarListResponse
+import com.calendar.automation.entities.dto.CalendarResponse
 
 interface GoogleCalendarService {
 
-    fun getCalendarList(): List<GoogleCalendarListResponse>
+    fun getCalendarList(): List<CalendarListResponse>
 
-    fun getCalendarById(calendarId: String): GoogleCalendarResponse
+    fun getCalendarById(calendarId: String): CalendarResponse
 }

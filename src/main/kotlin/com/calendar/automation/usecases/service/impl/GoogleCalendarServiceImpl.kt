@@ -1,10 +1,10 @@
 package com.calendar.automation.usecases.service.impl
 
 import com.calendar.automation.client.GoogleAPICalendarClient
-import com.calendar.automation.entities.dto.GoogleCalendarListResponse
-import com.calendar.automation.entities.dto.client.googleapicalendar.CalendarListClientResponse
-import com.calendar.automation.entities.dto.old.GoogleCalendarResponse
+import com.calendar.automation.entities.dto.CalendarListResponse
+import com.calendar.automation.entities.dto.CalendarResponse
 import com.calendar.automation.entities.dto.toCalendarListResponse
+import com.calendar.automation.entities.dto.toCalendarResponse
 import com.calendar.automation.usecases.service.GoogleOauthService
 import com.calendar.automation.usecases.service.GoogleCalendarService
 import org.eclipse.microprofile.rest.client.inject.RestClient
@@ -17,7 +17,7 @@ class GoogleCalendarServiceImpl(
     @RestClient private val googleCalendarClient: GoogleAPICalendarClient
 ) : GoogleCalendarService {
 
-    override fun getCalendarList(): List<GoogleCalendarListResponse> {
+    override fun getCalendarList(): List<CalendarListResponse> {
         val authorization = googleOauthService.getToken()
 
         return buildAuthorization(authorization.accessToken)
@@ -26,13 +26,18 @@ class GoogleCalendarServiceImpl(
             }.toCalendarListResponse()
     }
 
-    private fun buildAuthorization(accessToken: String) = "Bearer $accessToken"
+    override fun getCalendarById(calendarId: String): CalendarResponse {
+        val authorization = googleOauthService.getToken()
 
-    override fun getCalendarById(calendarId: String): GoogleCalendarResponse {
-        /*        val googleCalendarResponse = googleAuthCredentialService.buildGoogleRequest()
-                val calendarObject = googleCalendarResponse.calendars().get(calendarId).execute()
-                return calendarObject.toGoogleCalendarResponse()*/
-        TODO()
+        return buildAuthorization(authorization.accessToken)
+            .run {
+                googleCalendarClient.getCalendarById(
+                    authorization = this,
+                    calendarId = calendarId
+                )
+            }.toCalendarResponse()
     }
+
+    private fun buildAuthorization(accessToken: String) = "Bearer $accessToken"
 
 }
