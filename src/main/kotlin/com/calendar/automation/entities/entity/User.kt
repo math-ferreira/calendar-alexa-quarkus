@@ -42,18 +42,4 @@ class User : PanacheEntityBase() {
     @Column(name = "created_at")
     lateinit var createdAt: LocalDateTime
 
-    companion object {
-
-        @Transactional
-        fun add(username: String, password: String, role: List<Role>) =
-            User().apply {
-                this.username = username
-                this.password = BcryptUtil.bcryptHash(password)
-                this.roles = role
-                this.createdAt = LocalDateTime.now()
-            }.run {
-                this.persist()
-            }
-
-    }
 }

@@ -31,18 +31,4 @@ class Role : PanacheEntityBase() {
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     lateinit var users: List<User>
-
-    companion object {
-
-        @Transactional
-        fun add(roleName: String, description: String) =
-            Role().apply {
-                this.roleName = roleName
-                this.description = description
-                this.createdAt = LocalDateTime.now()
-            }.apply {
-                this.persist()
-            }
-
-    }
 }
