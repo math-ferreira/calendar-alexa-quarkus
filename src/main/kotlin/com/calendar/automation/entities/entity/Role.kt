@@ -1,11 +1,9 @@
 package com.calendar.automation.entities.entity
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase
 import io.quarkus.security.jpa.RolesValue
 import java.time.LocalDateTime
 import javax.persistence.*
-import javax.transaction.Transactional
 
 
 @Entity
