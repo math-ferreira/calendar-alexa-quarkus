@@ -2,7 +2,7 @@ package com.calendar.automation.usecases.service.impl
 
 import com.calendar.automation.client.Oauth2GoogleClient
 import com.calendar.automation.entities.dto.Oauth2TokenRequest
-import com.calendar.automation.entities.dto.Oauth2TokenResponse
+import com.calendar.automation.entities.dto.client.outh2google.Oauth2TokenClientResponse
 import com.calendar.automation.usecases.service.GoogleOauthService
 import io.quarkus.cache.CacheResult
 import org.eclipse.microprofile.config.inject.ConfigProperty
@@ -18,7 +18,7 @@ class GoogleAuthCredentialServiceImpl(
 ) : GoogleOauthService {
 
     @CacheResult(cacheName = "oauth-token-cache")
-    override fun getToken(): Oauth2TokenResponse {
+    override fun getToken(): Oauth2TokenClientResponse {
         return oauth2GoogleClient.getToken(
             Oauth2TokenRequest(
                 clientId = clientId,

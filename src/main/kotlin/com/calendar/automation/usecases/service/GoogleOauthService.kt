@@ -1,8 +1,8 @@
 package com.calendar.automation.usecases.service
 
-import com.calendar.automation.entities.dto.Oauth2TokenResponse
+import com.calendar.automation.entities.dto.client.outh2google.Oauth2TokenClientResponse
 
 interface GoogleOauthService {
 
-    fun getToken(): Oauth2TokenResponse
+    fun getToken(): Oauth2TokenClientResponse
 }

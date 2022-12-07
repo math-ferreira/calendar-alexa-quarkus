@@ -23,6 +23,9 @@ quarkus:
   rest-client:
     oauth2-google:
       url: https://oauth2.googleapis.com
+    google-calendar:
+      url: https://www.googleapis.com/calendar
+
 
   cache:
     caffeine:
