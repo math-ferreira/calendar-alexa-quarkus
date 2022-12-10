@@ -1,4 +1,4 @@
-package com.calendar.automation.entities.dto
+package com.calendar.automation.entities.dto.request
 
 data class Oauth2TokenRequest(
     val clientId: String,

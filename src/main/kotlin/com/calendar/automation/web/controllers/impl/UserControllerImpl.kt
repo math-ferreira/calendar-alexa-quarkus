@@ -1,9 +1,8 @@
 package com.calendar.automation.web.controllers.impl
 
-import com.calendar.automation.entities.dto.old.UserResponse
-import com.calendar.automation.entities.dto.old.toUserResponse
+import com.calendar.automation.entities.dto.response.UserResponse
+import com.calendar.automation.entities.dto.response.toUserResponse
 import com.calendar.automation.entities.enums.PermissionEnum
-import com.calendar.automation.entities.enums.PermissionEnum.PUBLIC_ADMIN
 import com.calendar.automation.usecases.service.AuthorizationService
 import com.calendar.automation.web.controllers.UserController
 import javax.ws.rs.core.SecurityContext

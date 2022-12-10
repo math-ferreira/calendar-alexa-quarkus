@@ -1,34 +1,28 @@
-package com.calendar.automation.entities.dto.old
+package com.calendar.automation.entities.dto.request
 
+import com.calendar.automation.entities.enums.EventTypeEnum
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class GoogleEventsRequest(
-    val googleEventsQueries: GoogleEventsQueries,
-    val googleEventsBody: GoogleEventsBody,
+data class EventsRequest(
+    val googleEventsQueries: EventsQueries,
+    val googleEventsBody: EventsRequestBody,
 )
 
-fun GoogleEventsBody.toRequest(calendarId: String) =
-    GoogleEventsRequest(
-        googleEventsBody = this,
-        googleEventsQueries = GoogleEventsQueries(
-            calendarId = calendarId
-        )
-    )
-
-
-data class GoogleEventsQueries(
+data class EventsQueries(
     val calendarId: String
 )
 
-data class GoogleEventsBody(
+data class EventsRequestBody(
     @JsonProperty("send_updates")
     val sendUpdates: Boolean,
     @JsonProperty("attendees")
-    val attendees: List<GoogleEventsAttendees>,
+    val attendees: List<EventsAttendeesRequestBody>,
     @JsonProperty("color_id")
     val colorId: String,
     @JsonProperty("description")
     val description: String,
+    @JsonProperty("event_type")
+    val eventType: EventTypeEnum,
     @JsonProperty("start_date")
     val startDate: String,
     @JsonProperty("end_date")
@@ -38,10 +32,10 @@ data class GoogleEventsBody(
     @JsonProperty("summary")
     val summary: String,
     @JsonProperty("reminders")
-    val reminders: GoogleEventsReminders?
+    val reminders: EventsRemindersRequestBody?
 )
 
-data class GoogleEventsAttendees(
+data class EventsAttendeesRequestBody(
     @JsonProperty("display_name")
     val displayName: String,
     @JsonProperty("email")
@@ -52,9 +46,17 @@ data class GoogleEventsAttendees(
     val responseStatus: String
 )
 
-data class GoogleEventsReminders(
+data class EventsRemindersRequestBody(
     @JsonProperty("method")
     val method: String,
     @JsonProperty("trigger_minutes")
     val triggerMinutes: Int,
 )
+
+fun EventsRequestBody.toRequest(calendarId: String) =
+    EventsRequest(
+        googleEventsBody = this,
+        googleEventsQueries = EventsQueries(
+            calendarId = calendarId
+        )
+    )

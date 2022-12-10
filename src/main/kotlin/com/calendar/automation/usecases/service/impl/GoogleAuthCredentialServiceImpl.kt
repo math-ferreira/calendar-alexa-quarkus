@@ -1,7 +1,7 @@
 package com.calendar.automation.usecases.service.impl
 
 import com.calendar.automation.client.Oauth2GoogleClient
-import com.calendar.automation.entities.dto.Oauth2TokenRequest
+import com.calendar.automation.entities.dto.request.Oauth2TokenRequest
 import com.calendar.automation.entities.dto.client.outh2google.Oauth2TokenClientResponse
 import com.calendar.automation.usecases.service.GoogleOauthService
 import io.quarkus.cache.CacheResult

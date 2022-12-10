@@ -1,4 +1,4 @@
-package com.calendar.automation.entities.dto.old
+package com.calendar.automation.entities.dto.response
 
 import com.calendar.automation.entities.enums.ErrorTypeEnum
 
