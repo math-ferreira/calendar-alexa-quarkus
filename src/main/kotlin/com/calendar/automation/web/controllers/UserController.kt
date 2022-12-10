@@ -1,7 +1,7 @@
 package com.calendar.automation.web.controllers
 
 import com.calendar.automation.entities.constants.PermissionsConstants.PUBLIC_ROLE_NAME
-import com.calendar.automation.entities.dto.old.UserResponse
+import com.calendar.automation.entities.dto.response.UserResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import javax.annotation.security.RolesAllowed
 import javax.ws.rs.GET

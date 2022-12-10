@@ -1,7 +1,7 @@
 package com.calendar.automation.web.controllers.impl
 
-import com.calendar.automation.entities.dto.CalendarListResponse
-import com.calendar.automation.entities.dto.CalendarResponse
+import com.calendar.automation.entities.dto.response.CalendarListResponse
+import com.calendar.automation.entities.dto.response.CalendarResponse
 import com.calendar.automation.entities.enums.PermissionEnum.GOOGLE_CALENDAR
 import com.calendar.automation.usecases.service.AuthorizationService
 import com.calendar.automation.usecases.service.GoogleCalendarService

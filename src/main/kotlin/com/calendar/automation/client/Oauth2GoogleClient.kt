@@ -1,7 +1,7 @@
 
 package com.calendar.automation.client
 
-import com.calendar.automation.entities.dto.Oauth2TokenRequest
+import com.calendar.automation.entities.dto.request.Oauth2TokenRequest
 import com.calendar.automation.entities.dto.client.outh2google.Oauth2TokenClientResponse
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient

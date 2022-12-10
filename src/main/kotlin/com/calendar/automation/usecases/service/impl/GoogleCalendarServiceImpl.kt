@@ -1,10 +1,11 @@
 package com.calendar.automation.usecases.service.impl
 
 import com.calendar.automation.client.GoogleAPICalendarClient
-import com.calendar.automation.entities.dto.CalendarListResponse
-import com.calendar.automation.entities.dto.CalendarResponse
-import com.calendar.automation.entities.dto.toCalendarListResponse
-import com.calendar.automation.entities.dto.toCalendarResponse
+import com.calendar.automation.entities.dto.response.CalendarListResponse
+import com.calendar.automation.entities.dto.response.CalendarResponse
+import com.calendar.automation.entities.dto.response.toCalendarListResponse
+import com.calendar.automation.entities.dto.response.toCalendarResponse
+import com.calendar.automation.entities.extensions.toAuthorization
 import com.calendar.automation.usecases.service.GoogleOauthService
 import com.calendar.automation.usecases.service.GoogleCalendarService
 import org.eclipse.microprofile.rest.client.inject.RestClient
@@ -20,7 +21,7 @@ class GoogleCalendarServiceImpl(
     override fun getCalendarList(): List<CalendarListResponse> {
         val authorization = googleOauthService.getToken()
 
-        return buildAuthorization(authorization.accessToken)
+        return authorization.accessToken.toAuthorization()
             .run {
                 googleCalendarClient.getCalendarList(this)
             }.toCalendarListResponse()
@@ -29,7 +30,7 @@ class GoogleCalendarServiceImpl(
     override fun getCalendarById(calendarId: String): CalendarResponse {
         val authorization = googleOauthService.getToken()
 
-        return buildAuthorization(authorization.accessToken)
+        return authorization.accessToken.toAuthorization()
             .run {
                 googleCalendarClient.getCalendarById(
                     authorization = this,
@@ -37,7 +38,5 @@ class GoogleCalendarServiceImpl(
                 )
             }.toCalendarResponse()
     }
-
-    private fun buildAuthorization(accessToken: String) = "Bearer $accessToken"
 
 }

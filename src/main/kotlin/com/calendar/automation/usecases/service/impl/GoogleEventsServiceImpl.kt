@@ -1,61 +1,41 @@
 package com.calendar.automation.usecases.service.impl
 
-import com.calendar.automation.entities.dto.old.*
-import com.calendar.automation.usecases.service.GoogleOauthService
+import com.calendar.automation.client.GoogleAPICalendarClient
+import com.calendar.automation.entities.dto.request.EventsRequest
+import com.calendar.automation.entities.dto.response.EventsResponse
+import com.calendar.automation.entities.dto.client.googleapicalendar.GoogleInsertEventClientResponse
+import com.calendar.automation.entities.dto.client.googleapicalendar.toGoogleInsertEventClientRequest
+import com.calendar.automation.entities.dto.response.toEventsResponse
+import com.calendar.automation.entities.extensions.toAuthorization
 import com.calendar.automation.usecases.service.GoogleEventsService
-import com.google.api.client.util.DateTime
-import com.google.api.services.calendar.model.Event
-import com.google.api.services.calendar.model.EventAttendee
-import com.google.api.services.calendar.model.EventDateTime
+import com.calendar.automation.usecases.service.GoogleOauthService
+import org.eclipse.microprofile.rest.client.inject.RestClient
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class GoogleEventsServiceImpl(
-    private val googleAuthCredentialService: GoogleOauthService
+    private val googleOauthService: GoogleOauthService,
+    @RestClient private val googleCalendarClient: GoogleAPICalendarClient
 ) : GoogleEventsService {
 
-    override fun insertEvent(googleEventsRequest: GoogleEventsRequest): GoogleEventsResponse {
-        val eventResponse = requestInsertEvent(googleEventsRequest)
-        return eventResponse.toGoogleEventsResponse()
-    }
-
-    private fun requestInsertEvent(googleEventsRequest: GoogleEventsRequest): Event {
-/*        return buildEvent(googleEventsRequest.googleEventsBody)
-            .apply {
-                start = setEventDateTime(googleEventsRequest.googleEventsBody.startDate)
-                end = setEventDateTime(googleEventsRequest.googleEventsBody.endDate)
-                attendees = setEventAttendees(googleEventsRequest.googleEventsBody.attendees)
-            }
+    override fun insertEvent(googleEventsRequest: EventsRequest): EventsResponse {
+        return requestInsertEvent(googleEventsRequest)
             .run {
-                googleAuthCredentialService.buildGoogleRequest()
-                    .events()
-                    .insert(googleEventsRequest.googleEventsQueries.calendarId, this)
-                    .execute()
-            }*/
-        TODO()
+                this.toEventsResponse()
+            }
     }
 
-    private fun buildEvent(googleEventsBody: GoogleEventsBody) =
-        with(googleEventsBody) {
-            Event()
-                .setSummary(summary)
-                .setLocation(location)
-                .setDescription(description)
-                .setColorId(colorId)
-        }
+    private fun requestInsertEvent(googleEventsRequest: EventsRequest): GoogleInsertEventClientResponse {
 
-    private fun setEventDateTime(dateTime: String) =
-        DateTime(dateTime).run {
-            EventDateTime().setDateTime(this)
-        }
+        val authorization = googleOauthService.getToken()
 
-    private fun setEventAttendees(attendees: List<GoogleEventsAttendees>) =
-        attendees.map {
-            EventAttendee()
-                .setDisplayName(it.displayName)
-                .setEmail(it.email)
-                .setOptional(it.isOptional)
-                .setResponseStatus(it.responseStatus)
-        }
-
+        return authorization.accessToken.toAuthorization()
+            .run {
+                googleCalendarClient.insertEvent(
+                    authorization = this,
+                    calendarId = googleEventsRequest.googleEventsQueries.calendarId,
+                    googleEventClientRequest = googleEventsRequest.toGoogleInsertEventClientRequest()
+                )
+            }
+    }
 }
