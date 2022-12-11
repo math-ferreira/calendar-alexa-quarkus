@@ -18,10 +18,8 @@ import javax.transaction.Transactional
 class User : PanacheEntityBase() {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(
-        columnDefinition = "SERIAL"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "SERIAL")
     val id: Int? = null
 
     @Username

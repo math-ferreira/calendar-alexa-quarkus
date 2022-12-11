@@ -7,17 +7,21 @@ import com.calendar.automation.entities.dto.client.googleapicalendar.GoogleInser
 import com.calendar.automation.entities.dto.client.googleapicalendar.toGoogleInsertEventClientRequest
 import com.calendar.automation.entities.dto.response.toEventsResponse
 import com.calendar.automation.entities.extensions.toAuthorization
+import com.calendar.automation.entities.repository.EventRepository
 import com.calendar.automation.usecases.service.GoogleEventsService
 import com.calendar.automation.usecases.service.GoogleOauthService
 import org.eclipse.microprofile.rest.client.inject.RestClient
 import javax.enterprise.context.ApplicationScoped
+import javax.transaction.Transactional
 
 @ApplicationScoped
 class GoogleEventsServiceImpl(
     private val googleOauthService: GoogleOauthService,
-    @RestClient private val googleCalendarClient: GoogleAPICalendarClient
+    @RestClient private val googleCalendarClient: GoogleAPICalendarClient,
+    private val eventRepository: EventRepository
 ) : GoogleEventsService {
 
+    @Transactional
     override fun insertEvent(googleEventsRequest: EventsRequest): EventsResponse {
         return requestInsertEvent(googleEventsRequest)
             .run {
@@ -36,6 +40,8 @@ class GoogleEventsServiceImpl(
                     calendarId = googleEventsRequest.googleEventsQueries.calendarId,
                     googleEventClientRequest = googleEventsRequest.toGoogleInsertEventClientRequest()
                 )
+            }.apply {
+                eventRepository.save(this)
             }
     }
 }

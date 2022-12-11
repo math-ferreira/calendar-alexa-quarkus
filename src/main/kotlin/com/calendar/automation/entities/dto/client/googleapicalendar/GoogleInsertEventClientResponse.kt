@@ -54,4 +54,6 @@ data class AttendeesClientResponse(
     val email: String,
     @JsonProperty("displayName")
     val displayName: String,
-)
+) {
+    override fun toString() = "[name: $displayName, email: $email]"
+}
