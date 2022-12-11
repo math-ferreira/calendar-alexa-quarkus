@@ -36,6 +36,7 @@ dependencies {
     implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
     implementation("com.google.apis:google-api-services-calendar:v3-rev20220715-2.0.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
+    implementation("org.jboss.slf4j:slf4j-jboss-logmanager")
 
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")

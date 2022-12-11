@@ -2,7 +2,7 @@ package com.calendar.automation.web.controllers.impl
 
 import com.calendar.automation.entities.dto.response.UserResponse
 import com.calendar.automation.entities.dto.response.toUserResponse
-import com.calendar.automation.entities.enums.PermissionEnum
+import com.calendar.automation.entities.enums.RoleEnum
 import com.calendar.automation.usecases.service.AuthorizationService
 import com.calendar.automation.web.controllers.UserController
 import javax.ws.rs.core.SecurityContext
@@ -15,7 +15,7 @@ class UserControllerImpl(
         return securityContext.run {
             authorizationService.validateRequest(
                 securityContext = this,
-                allowedRoles = PermissionEnum.values().toList()
+                allowedRoles = RoleEnum.values().toList()
             )
             this.toUserResponse()
         }

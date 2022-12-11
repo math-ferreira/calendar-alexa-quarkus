@@ -11,4 +11,7 @@ data class Oauth2TokenClientResponse(
     val scope: String,
     @JsonProperty("token_type")
     val tokenType: String
-)
+) {
+    override fun toString() =
+        "[accessToken: ${accessToken.substring(0, 5)}###, expiresIn: $expiresIn, scope: ###, tokenType: $tokenType]"
+}
