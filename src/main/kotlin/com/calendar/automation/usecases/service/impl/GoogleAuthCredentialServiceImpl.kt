@@ -7,6 +7,8 @@ import com.calendar.automation.usecases.service.GoogleOauthService
 import io.quarkus.cache.CacheResult
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.eclipse.microprofile.rest.client.inject.RestClient
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
@@ -17,8 +19,13 @@ class GoogleAuthCredentialServiceImpl(
     @ConfigProperty(name = "google.client.refresh-token") private val refreshToken: String,
 ) : GoogleOauthService {
 
+    private val logger: Logger = LoggerFactory.getLogger(javaClass)
+
     @CacheResult(cacheName = "oauth-token-cache")
     override fun getToken(): Oauth2TokenClientResponse {
+
+        logger.info("${this::class.simpleName} -> Starting to get token form Google services")
+
         return oauth2GoogleClient.getToken(
             Oauth2TokenRequest(
                 clientId = clientId,
@@ -26,7 +33,9 @@ class GoogleAuthCredentialServiceImpl(
                 refreshToken = refreshToken,
                 grantType = GRANT_TYPE
             )
-        )
+        ).also {
+            logger.info("${this::class.simpleName} -> Token from Google generated with success: $it")
+        }
     }
 
     companion object {

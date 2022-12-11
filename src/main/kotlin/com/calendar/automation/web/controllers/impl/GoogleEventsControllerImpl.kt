@@ -3,7 +3,7 @@ package com.calendar.automation.web.controllers.impl
 import com.calendar.automation.entities.dto.request.EventsRequestBody
 import com.calendar.automation.entities.dto.response.EventsResponse
 import com.calendar.automation.entities.dto.request.toRequest
-import com.calendar.automation.entities.enums.PermissionEnum
+import com.calendar.automation.entities.enums.RoleEnum
 import com.calendar.automation.usecases.service.AuthorizationService
 import com.calendar.automation.usecases.service.GoogleEventsService
 import com.calendar.automation.web.controllers.GoogleEventsController
@@ -22,7 +22,7 @@ class GoogleEventsControllerImpl(
 
         authorizationService.validateRequest(
             securityContext = securityContext,
-            allowedRoles = listOf(PermissionEnum.GOOGLE_EVENTS)
+            allowedRoles = listOf(RoleEnum.GOOGLE_EVENTS)
         )
 
         return googleEventsBody.toRequest(calendarId)

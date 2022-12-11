@@ -6,7 +6,7 @@ import com.calendar.automation.entities.constants.PermissionsConstants.GOOGLE_EV
 import com.calendar.automation.entities.constants.PermissionsConstants.GOOGLE_OAUTH_ROLE_NAME
 import com.calendar.automation.entities.constants.PermissionsConstants.PUBLIC_ROLE_NAME
 
-enum class PermissionEnum(val roleName: String) {
+enum class RoleEnum(val roleName: String) {
 
     PUBLIC_ADMIN(PUBLIC_ROLE_NAME),
     ROLE_ADMIN(ADMIN_ROLE_NAME),

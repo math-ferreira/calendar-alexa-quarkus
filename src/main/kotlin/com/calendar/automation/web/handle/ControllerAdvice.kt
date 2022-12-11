@@ -4,6 +4,8 @@ import com.calendar.automation.entities.dto.response.ErrorData
 import com.calendar.automation.entities.dto.response.ErrorResponse
 import com.calendar.automation.entities.enums.ErrorTypeEnum
 import com.calendar.automation.entities.exception.CustomException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.Response.Status.Family.CLIENT_ERROR
 import javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR
@@ -13,7 +15,12 @@ import javax.ws.rs.ext.Provider
 @Provider
 class ControllerAdvice : ExceptionMapper<Exception> {
 
+    private val logger: Logger = LoggerFactory.getLogger(javaClass)
+
     override fun toResponse(exception: Exception): Response {
+
+        logger.info("${this::class.simpleName} -> Starting to handle error [Class: ${exception::javaClass}]")
+
         return when (exception) {
             is CustomException -> handleGlobalException(exception)
             else -> handleException(exception)
@@ -21,23 +28,27 @@ class ControllerAdvice : ExceptionMapper<Exception> {
     }
 
     private fun handleException(ex: Exception): Response {
+
         return createErrorResponse(ex, ErrorTypeEnum.SERVER_ERROR)
             .run {
                 Response.status(INTERNAL_SERVER_ERROR)
                     .entity(this)
                     .build()
+            }.also {
+                logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}]")
             }
     }
 
     private fun handleGlobalException(ex: CustomException): Response {
         return getErrorTypeByStatus(ex.status)
-            .let {
-                createErrorResponse(ex, it)
-            }
-            .run {
+            .apply {
+                createErrorResponse(ex, this)
+            }.run {
                 Response.status(ex.status)
                     .entity(this)
                     .build()
+            }.also {
+                logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}]")
             }
 
     }
