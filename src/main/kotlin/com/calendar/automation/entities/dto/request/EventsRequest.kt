@@ -28,6 +28,7 @@ data class EventsRequestBody(
     val reminders: EventsRemindersRequestBody?
 )
 
+@JsonNaming(SnakeCaseStrategy::class)
 data class EventsAttendeesRequestBody(
     @JsonProperty("display_name")
     val displayName: String,
@@ -39,6 +40,7 @@ data class EventsAttendeesRequestBody(
     val responseStatus: String
 )
 
+@JsonNaming(SnakeCaseStrategy::class)
 data class EventsRemindersRequestBody(
     @JsonProperty("method")
     val method: String,
