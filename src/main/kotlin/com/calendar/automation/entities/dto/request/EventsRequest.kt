@@ -2,8 +2,6 @@ package com.calendar.automation.entities.dto.request
 
 import com.calendar.automation.entities.enums.EventTypeEnum
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
-import com.fasterxml.jackson.databind.annotation.JsonNaming
 
 data class EventsRequest(
     val googleEventsQueries: EventsQueries,
@@ -14,21 +12,29 @@ data class EventsQueries(
     val calendarId: String
 )
 
-@JsonNaming(SnakeCaseStrategy::class)
 data class EventsRequestBody(
+    @JsonProperty("send_updates")
     val sendUpdates: Boolean,
+    @JsonProperty("attendees")
     val attendees: List<EventsAttendeesRequestBody>,
+    @JsonProperty("color_id")
     val colorId: String,
+    @JsonProperty("description")
     val description: String,
+    @JsonProperty("event_type")
     val eventType: EventTypeEnum,
+    @JsonProperty("start_date")
     val startDate: String,
+    @JsonProperty("end_date")
     val endDate: String,
+    @JsonProperty("location")
     val location: String,
+    @JsonProperty("summary")
     val summary: String,
+    @JsonProperty("reminders")
     val reminders: EventsRemindersRequestBody?
 )
 
-@JsonNaming(SnakeCaseStrategy::class)
 data class EventsAttendeesRequestBody(
     @JsonProperty("display_name")
     val displayName: String,
@@ -40,7 +46,6 @@ data class EventsAttendeesRequestBody(
     val responseStatus: String
 )
 
-@JsonNaming(SnakeCaseStrategy::class)
 data class EventsRemindersRequestBody(
     @JsonProperty("method")
     val method: String,
