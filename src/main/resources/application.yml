@@ -1,5 +1,6 @@
 quarkus:
   swagger-ui:
+    theme: material
     always-include: true
 
   http:
