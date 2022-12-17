@@ -3,6 +3,7 @@ package com.calendar.automation.usecases.service.impl
 import com.calendar.automation.entities.enums.RoleEnum
 import com.calendar.automation.entities.exception.CustomException
 import com.calendar.automation.usecases.service.AuthorizationService
+import io.quarkus.runtime.configuration.ProfileManager
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import javax.enterprise.context.ApplicationScoped
@@ -16,16 +17,20 @@ class AuthorizationServiceImpl : AuthorizationService {
 
     override fun validateRequest(securityContext: SecurityContext, allowedRoles: List<RoleEnum>) {
 
-        logger.info("${this::class.simpleName} -> Starting to validate request with basic auth [userPrincipal: ${getUserPrincipal(securityContext)}]")
+        val currentProfile = ProfileManager.getActiveProfile()
 
-        validateAuthenticationScheme(securityContext)
+        logger.info("${this::class.simpleName} -> Starting to validate request with basic auth [userPrincipal: ${getUserPrincipal(securityContext)}, profile: $currentProfile]")
 
-        validateRolesByUser(
-            securityContext = securityContext,
-            roleList = allowedRoles
-        )
+        if (currentProfile != "local") {
+            validateAuthenticationScheme(securityContext)
 
-        logger.info("${this::class.simpleName} -> Allowed access to the user [userPrincipal: ${getUserPrincipal(securityContext)}]")
+            validateRolesByUser(
+                securityContext = securityContext,
+                roleList = allowedRoles
+            )
+        }
+
+        logger.info("${this::class.simpleName} -> Allowed access to the user [userPrincipal: ${getUserPrincipal(securityContext)}, profile: $currentProfile]")
     }
 
     private fun validateAuthenticationScheme(securityContext: SecurityContext) {
