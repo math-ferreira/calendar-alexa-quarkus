@@ -22,34 +22,36 @@ class ControllerAdvice : ExceptionMapper<Exception> {
         logger.info("${this::class.simpleName} -> Starting to handle error [Class: ${exception::javaClass}]")
 
         return when (exception) {
-            is CustomException -> handleGlobalException(exception)
+            is CustomException -> handleCustomException(exception)
             else -> handleException(exception)
         }
     }
 
     private fun handleException(ex: Exception): Response {
 
-        return createErrorResponse(ex, ErrorTypeEnum.SERVER_ERROR)
-            .run {
-                Response.status(INTERNAL_SERVER_ERROR)
-                    .entity(this)
-                    .build()
-            }.also {
-                logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}]")
-            }
+        return createErrorResponse(
+            exception = ex,
+            errorType = ErrorTypeEnum.SERVER_ERROR
+        ).run {
+            Response.status(INTERNAL_SERVER_ERROR)
+                .entity(this)
+                .build()
+        }.also {
+            logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}]")
+        }
     }
 
-    private fun handleGlobalException(ex: CustomException): Response {
-        return getErrorTypeByStatus(ex.status)
-            .apply {
-                createErrorResponse(ex, this)
-            }.run {
-                Response.status(ex.status)
-                    .entity(this)
-                    .build()
-            }.also {
-                logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}]")
-            }
+    private fun handleCustomException(ex: CustomException): Response {
+        return createErrorResponse(
+            exception = ex,
+            errorType = getErrorTypeByStatus(ex.status)
+        ).run {
+            Response.status(ex.status)
+                .entity(this)
+                .build()
+        }.also {
+            logger.info("${this::class.simpleName} -> Handle custom exception [status: ${it.status}]")
+        }
 
     }
 
