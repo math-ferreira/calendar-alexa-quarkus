@@ -29,6 +29,6 @@ interface UserController {
     @RolesAllowed(PUBLIC_ROLE_NAME)
     @Path("/encrypted-password")
     fun getEncryptedPassword(
-        @HeaderParam(value = "password") password: String
+        @HeaderParam(value = "password") password: String?
     ): EncryptedPasswordResponse
 }

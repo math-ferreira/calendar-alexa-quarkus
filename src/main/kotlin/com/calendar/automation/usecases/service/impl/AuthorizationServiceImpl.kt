@@ -21,7 +21,7 @@ class AuthorizationServiceImpl : AuthorizationService {
 
         logger.info("${this::class.simpleName} -> Starting to validate request with basic auth [userPrincipal: ${getUserPrincipal(securityContext)}, profile: $currentProfile]")
 
-        if (currentProfile != "local") {
+        if (currentProfile != LOCAL_PROFILE) {
             validateAuthenticationScheme(securityContext)
 
             validateRolesByUser(
@@ -58,6 +58,12 @@ class AuthorizationServiceImpl : AuthorizationService {
         }
     }
 
-    private fun getUserPrincipal(securityContext: SecurityContext) = securityContext.userPrincipal.name
+    private fun getUserPrincipal(securityContext: SecurityContext) =
+        securityContext.userPrincipal?.name
+            ?: NOT_INFORMED_USER_PRINCIPAL
 
+    companion object {
+        const val NOT_INFORMED_USER_PRINCIPAL = "invalid_user"
+        const val LOCAL_PROFILE = "local"
+    }
 }
