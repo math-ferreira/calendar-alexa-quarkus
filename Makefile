@@ -1,5 +1,3 @@
-IMAGE_NAME:=soultechnologies/cond-mono/home/math/IdeaProjects/CondMonolithModulelith-module
-IMAGE_TAG:=latest
 MAIN_MODULE:=application
 DOCKERCOMPOSE_LOCATION:=src/main/docker/docker-compose.yml
 
