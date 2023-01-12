@@ -37,7 +37,7 @@ class ControllerAdvice : ExceptionMapper<Exception> {
                 .entity(this)
                 .build()
         }.also {
-            logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}]")
+            logger.info("${this::class.simpleName} -> Handle exception [status: ${it.status}, class: ${ex.javaClass.simpleName}, message: ${ex.message}]")
         }
     }
 
@@ -50,7 +50,7 @@ class ControllerAdvice : ExceptionMapper<Exception> {
                 .entity(this)
                 .build()
         }.also {
-            logger.info("${this::class.simpleName} -> Handle custom exception [status: ${it.status}]")
+            logger.info("${this::class.simpleName} -> Handle custom exception [status: ${it.status}, message: ${ex.message}]")
         }
 
     }

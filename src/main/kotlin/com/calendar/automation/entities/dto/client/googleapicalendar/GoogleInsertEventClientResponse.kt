@@ -8,7 +8,7 @@ data class GoogleInsertEventClientResponse(
     @JsonProperty("summary")
     val summary: String,
     @JsonProperty("description")
-    val description: String,
+    val description: String? = null,
     @JsonProperty("eventType")
     val eventType: String,
     @JsonProperty("created")
@@ -26,7 +26,7 @@ data class GoogleInsertEventClientResponse(
     @JsonProperty("end")
     val eventEndDate: DateTimeClientResponse,
     @JsonProperty("attendees")
-    val attendees: List<AttendeesClientResponse>,
+    val attendees: List<AttendeesClientResponse>? = emptyList(),
 )
 
 data class CreatorClientResponse(

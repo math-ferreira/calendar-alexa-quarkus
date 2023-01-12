@@ -16,11 +16,11 @@ data class EventsRequestBody(
     @JsonProperty("send_updates")
     val sendUpdates: Boolean,
     @JsonProperty("attendees")
-    val attendees: List<EventsAttendeesRequestBody>,
+    val attendees: List<EventsAttendeesRequestBody>? = emptyList(),
     @JsonProperty("color_id")
     val colorId: String,
     @JsonProperty("description")
-    val description: String,
+    val description: String?,
     @JsonProperty("event_type")
     val eventType: EventTypeEnum,
     @JsonProperty("start_date")

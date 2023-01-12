@@ -9,7 +9,7 @@ data class GoogleInsertEventClientRequest(
     @JsonProperty("summary")
     val summary: String,
     @JsonProperty("description")
-    val description: String,
+    val description: String? = null,
     @JsonProperty("eventType")
     val eventType: String,
     @JsonProperty("location")
@@ -21,7 +21,7 @@ data class GoogleInsertEventClientRequest(
     @JsonProperty("end")
     val eventEndDate: DateTimeClientRequest,
     @JsonProperty("attendees")
-    val attendees: List<AttendeesClientRequest>,
+    val attendees: List<AttendeesClientRequest>? = emptyList(),
 )
 
 data class DateTimeClientRequest(
@@ -48,7 +48,7 @@ fun EventsRequest.toGoogleInsertEventClientRequest() =
             location = location,
             eventStartDate = DateTimeClientRequest(startDate),
             eventEndDate = DateTimeClientRequest(endDate),
-            attendees = attendees.toAttendeesClientRequest()
+            attendees = attendees?.toAttendeesClientRequest()
         )
     }
 

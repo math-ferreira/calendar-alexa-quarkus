@@ -6,7 +6,7 @@ import com.calendar.automation.entities.dto.client.googleapicalendar.GoogleInser
 
 data class EventsResponse(
     val summary: String,
-    val description: String,
+    val description: String?,
     val eventType: String,
     val created: String,
     val location: String? = null,
@@ -36,7 +36,7 @@ fun GoogleInsertEventClientResponse.toEventsResponse() =
         location = location,
         htmlLink = htmlLink,
         creatorEmail = creator.email,
-        attendees = attendees.toEventsAttendeesResponse(),
+        attendees = attendees?.toEventsAttendeesResponse(),
         startEvent = eventStartDate.toEventDateResponse(),
         endEvent = eventEndDate.toEventDateResponse()
     )
