@@ -25,7 +25,7 @@ This project is a comprehensive study on developing web services using the Quark
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/calendar-alexa-quarkus.git
+   git clone https://github.com/math-ferreira/calendar-alexa-quarkus
    ```
 
 2. Configure Google Calendar API:
