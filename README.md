@@ -1,61 +1,73 @@
-# calendar-alexa Project
+# Quarkus Google Calendar Project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Overview
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project is a comprehensive study on developing web services using the Quarkus framework and its libraries. The primary focus is on integrating with Google Calendar and, additionally, supporting AWS Lambda functions developed in Node.js. The integration with Google Calendar is particularly highlighted, showcasing the seamless integration with Google services.
 
-## Running the application in dev mode
+## Features
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./gradlew quarkusDev
-```
+- Quarkus framework for efficient and lightweight Java application development.
+- Integration with Google Calendar API for robust calendar functionality.
+- AWS Lambda support with Node.js for serverless architecture.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+## Getting Started
 
-## Packaging and running the application
+### Prerequisites
 
-The application can be packaged using:
-```shell script
-./gradlew build
-```
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
+- JDK 11 or higher
+- Maven
+- Quarkus Development Environment
+- Google Cloud API Credentials
+- AWS Account and AWS CLI for Lambda deployment
 
-The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
+### Setup
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./gradlew build -Dquarkus.package.type=uber-jar
-```
+1. Clone this repository:
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
+   ```bash
+   git clone https://github.com/your-username/calendar-alexa-quarkus.git
+   ```
 
-## Creating a native executable
+2. Configure Google Calendar API:
 
-You can create a native executable using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native
-```
+   - Obtain API credentials from the [Google Cloud Console](https://console.cloud.google.com/).
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-```
+3. Configure AWS Lambda to integrate with this backend service:
 
-You can then execute your native executable with: `./build/calendar-alexa-1.0.0-SNAPSHOT-runner`
+   - Follow the instructions in the [serverless-spring-awslambda](https://github.com/math-ferreira/serverless-spring-awslambda) repository and run the projects together.
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
+4. Build and Run the Project:
 
-## Related Guides
+   ```bash
+   cd calendar-alexa-quarkus
+   mvn clean package
+   java -jar target/calendar-alexa-quarkus-1.0.0-SNAPSHOT-runner.jar
+   ```
 
-- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A JAX-RS implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
+5. Access the application at `http://localhost:8080`.
 
-## Provided Code
+## Google Calendar Integration
 
-### RESTEasy Reactive
+The project demonstrates how to integrate with Google Calendar. Key steps include:
 
-Easily start your Reactive RESTful Web Services
+1. Setting up Google Calendar API credentials.
+2. Implementing authentication and authorization.
+3. Accessing and manipulating calendar events programmatically.
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+## AWS Lambda Integration
+
+This project seamlessly integrates with AWS Lambda functions developed in Node.js. For detailed deployment instructions, refer to the [serverless-spring-awslambda](https://github.com/math-ferreira/serverless-spring-awslambda) repository.
+
+## Additional Resources
+
+- Quarkus Documentation: [https://quarkus.io/](https://quarkus.io/)
+- Google Calendar API Documentation: [https://developers.google.com/calendar](https://developers.google.com/calendar)
+- AWS Lambda Documentation: [https://docs.aws.amazon.com/lambda](https://docs.aws.amazon.com/lambda)
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request with your enhancements.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
